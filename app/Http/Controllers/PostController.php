@@ -2,47 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
+use App\Models\User;
+use Exception;
 use App\Models\Post;
-use App\Http\Requests\PostRequest;
-use Illuminate\Contracts\View\View;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Redirector;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @return mixed
      */
     public function index()
     {
+        if (request()->route()->getName() == 'user.posts') {
+            $posts = auth()->user()->posts();
+            return view('posts.index', compact('posts'));
+        }
         // or Post::paginate(10);
-        $posts = Post::latest()->get();
+        $posts = Post::latest()->paginate(3);
 
         return view('posts.index', compact('posts'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return View
+     * @return mixed
+     * @throws AuthorizationException
      */
-    public function create() : View
+    public function create()
     {
+        $this->authorize('create', Post::class);
         return view('posts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param PostRequest $request
-     * @return Application|RedirectResponse|Redirector
+     * @param Post             $post
+     * @param StorePostRequest $request
+     * @return mixed
+     * @throws AuthorizationException
      */
-    public function store(PostRequest $request)
+    public function store(Post $post, StorePostRequest $request)
     {
-        Post::create($request->validated());
+        $this->authorize('create', Post::class);
+        $request->validated();
+
+        Post::create([
+            'user_id' => auth()->id(),
+            'title' => request('title'),
+            'body' => request('body')
+        ]);
 
         return redirect(route('posts.index'));
     }
@@ -51,9 +63,9 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param Post $post
-     * @return View
+     * @return mixed
      */
-    public function show(Post $post): View
+    public function show(Post $post)
     {
         return view('posts.show', compact('post'));
     }
@@ -62,22 +74,27 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Post $post
-     * @return View
+     *
+     * @return mixed
+     * @throws AuthorizationException
      */
-    public function edit(Post $post) : View
+    public function edit(Post $post)
     {
+        $this->authorize('update', $post);
         return view('posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param PostRequest $request
      * @param Post        $post
-     * @return Application|RedirectResponse|Redirector
+     * @return mixed
+     * @throws AuthorizationException
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(Post $post, StorePostRequest $request)
     {
+        $this->authorize('update', $post);
+
         $post->update($request->validated());
 
         return redirect(route('posts.show', $post));
@@ -87,11 +104,15 @@ class PostController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Post $post
-     * @return Application|RedirectResponse|Response|Redirector
+     *
+     * @return mixed
+     * @throws Exception
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
         $post->delete($post);
+
         return redirect(route('posts.index'));
     }
 }

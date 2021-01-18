@@ -6,18 +6,24 @@
             <li class="list-group-item">
                 <a href="{{ route('posts.show', $post) }}">
                     {{ $post->title }}
-                </a>
+                </a> by {{ $post->user->name }}
 
-                <form method="GET" action="{{ route('posts.edit', $post) }}">
-                    <button type="submit" class="btn btn-warning">Edit</button>
-                </form>
+                @can('update', $post)
+                    <form method="GET" action="{{ route('posts.edit', $post) }}">
+                        <button type="submit" class="btn btn-warning">Edit</button>
+                    </form>
+                @endcan
 
-                <form method="POST" action="{{ route('posts.destroy', $post) }}">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
+                @can('delete', $post)
+                    <form method="POST" action="{{ route('posts.destroy', $post) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                @endcan
             </li>
         </ul>
     @endforeach
+
+        {{ $posts->links() }}
 </div>

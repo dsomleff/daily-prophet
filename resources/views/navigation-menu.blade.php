@@ -18,13 +18,19 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('postsList')">
+                    <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
                         All Posts
                     </x-jet-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('posts.create') }}" :active="request()->routeIs('createPost')">
+                    <x-jet-nav-link href="{{ route('user.posts') }}s" :active="request()->routeIs('user.posts')">
+                        My Posts
+                    </x-jet-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('posts.create') }}" :active="request()->routeIs('posts.create')">
                         Create Post
                     </x-jet-nav-link>
                 </div>

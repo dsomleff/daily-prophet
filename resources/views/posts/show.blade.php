@@ -2,8 +2,13 @@
 
 <div class="container">
     <h1>{{ $post->title }}</h1>
+    <h2>Posted by {{ $post->user->name }}</h2>
 
     <p>
-        {{ $post->context }}
+        {{ $post->body }}
     </p>
+
+    <a href="{{ route('posts.index') }}">
+        <button type="button" class="btn btn-link">Back</button>
+    </a>
 </div>

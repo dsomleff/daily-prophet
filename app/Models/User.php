@@ -24,6 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'role_id',
         'name',
         'email',
         'password',
@@ -58,4 +59,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function posts()
+    {
+        return Post::where('user_id', $this->id)->latest()->get();
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }
