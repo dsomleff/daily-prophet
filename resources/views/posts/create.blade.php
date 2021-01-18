@@ -40,8 +40,8 @@
             </div>
 
             <div class="form-group form-check">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 @endcan

@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function comments()
+    {
+        return Comment::where('user_id', $this->id)->latest()->get();
+    }
 }
