@@ -60,16 +60,41 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    /**
+     * Relationship
+     *
+     * @return mixed
+     */
     public function posts()
     {
         return Post::where('user_id', $this->id)->latest()->get();
     }
 
+    /**
+     * Relationship
+     *
+     * @return mixed
+     */
     public function role()
     {
         return $this->belongsTo(Role::class);
     }
 
+    /**
+     * Relationship
+     *
+     * @return mixed
+     */
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    /**
+     * Retrieve comments by logged User.
+     *
+     * @return mixed
+     */
     public function comments()
     {
         return Comment::where('user_id', $this->id)->latest()->get();

@@ -13,7 +13,7 @@ class CommentPolicy
     const ADMIN = 'admin';
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can delete the comment.
      *
      * @param  User  $user
      * @param Comment  $comment

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
-use App\Models\User;
 use Exception;
 use App\Models\Post;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -21,7 +20,7 @@ class PostController extends Controller
             return view('posts.index', compact('posts'));
         }
         // or Post::paginate(10);
-        $posts = Post::latest()->paginate(5);
+        $posts = Post::withCount(['likes', 'dislikes'])->latest()->get();
 
         return view('posts.index', compact('posts'));
     }
@@ -40,12 +39,11 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Post             $post
      * @param StorePostRequest $request
      * @return mixed
      * @throws AuthorizationException
      */
-    public function store(Post $post, StorePostRequest $request)
+    public function store(StorePostRequest $request)
     {
         $this->authorize('create', Post::class);
         $request->validated();

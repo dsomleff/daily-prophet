@@ -1,4 +1,6 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" xmlns="http://www.w3.org/1999/html">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
 <div class="container">
     @foreach($posts as $post)
@@ -8,22 +10,13 @@
                     {{ $post->title }}
                 </a> by {{ $post->user->name }}
 
-                @can('update', $post)
-                    <form method="GET" action="{{ route('posts.edit', $post) }}">
-                        <button type="submit" class="btn btn-warning">Edit</button>
-                    </form>
-                @endcan
+                <x-like-buttons :post="$post"/>
 
-                @can('delete', $post)
-                    <form method="POST" action="{{ route('posts.destroy', $post) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                @endcan
+                <x-crud-buttons :post="$post"/>
             </li>
         </ul>
-    @endforeach
 
-        {{ $posts->links() }}
+    @endforeach
+{{--Pagination links--}}
+{{--        {{ $posts->links() }}--}}
 </div>
