@@ -22,6 +22,7 @@ Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy');
 
 // Comments
 Route::post('comment', 'CommentController@store');
+Route::put('comment/{comment}',  'CommentController@update');
 Route::delete('comment/{comment}', 'CommentController@destroy')->name('comments.destroy');
 
 // Likes

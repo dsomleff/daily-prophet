@@ -31,7 +31,7 @@ class UserRoleController extends Controller
 //        $this->authorize('update', $post);
 
         $user->where('id', $user->id)
-            ->update(['role_id' => $request->role_id]);
+            ->update(request(['role_id']));
 
         return redirect(route('users-roles.index'));
     }

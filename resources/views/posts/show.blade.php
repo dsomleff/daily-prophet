@@ -12,11 +12,9 @@
         <button type="button" class="btn btn-link">Back</button>
     </a>
 
-<div class="container">
-    <hr>
-</div>
+    <div class="container">
+        <hr>
+    </div>
 
     <x-comments-section :post="$post"/>
-    <x-comments-form :post="$post"/>
-
-<script src="{{ mix('js/app.js') }}"></script>
+</div>

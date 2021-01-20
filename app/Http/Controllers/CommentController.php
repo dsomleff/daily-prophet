@@ -70,14 +70,11 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
      * @param Comment $comment
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Comment $comment)
     {
-        //
+        $comment->update(request(['body']));
     }
 
     /**
@@ -92,6 +89,10 @@ class CommentController extends Controller
         $this->authorize('deleteComment', $comment);
         $comment->delete();
 
-        return back()->with('flash', 'Your comment has been deleted!');
+        if (\request()->expectsJson()) {
+            return response(['status' => 'Comment deleted']);
+        }
+
+        return back();
     }
 }

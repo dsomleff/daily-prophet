@@ -6,11 +6,12 @@ import Vue from 'vue'
 
 //Main pages
 import Flash from './components/Flash.vue'
+import Comment from './components/Comment.vue'
 
 
 const app = new Vue({
     el: '#app',
-    components: { Flash }
+    components: { Flash, Comment }
 });
 
 window.events = new Vue();
