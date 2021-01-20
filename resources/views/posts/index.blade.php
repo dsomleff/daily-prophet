@@ -2,8 +2,6 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
-{{--<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>--}}
-
 <div class="container" id="app">
     @foreach($posts as $post)
         <ul class="list-group">

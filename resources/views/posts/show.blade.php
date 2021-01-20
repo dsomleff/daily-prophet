@@ -16,64 +16,7 @@
     <hr>
 </div>
 
-<div class="container">
-    @forelse( $post->comments as $comment)
-        <p><strong>{{ $comment->user->name }} </strong></p>
-            {{ $comment->body }}
-        <p class="font-weight-lighter">
-            at {{ $comment->created_at->diffForHumans() }}
-        </p>
+    <x-comments-section :post="$post"/>
+    <x-comments-form :post="$post"/>
 
-        @can('deleteComment', $comment)
-             <form method="POST" action="{{ route('comments.destroy', $comment) }}">
-                 @csrf
-                 @method('DELETE')
-
-                 <button type="submit" class="btn btn-danger">Delete</button>
-             </form>
-
-            <div class="container">
-                <hr>
-            </div>
-        @endcan
-    @empty
-        No comments.
-    @endforelse
-</div>
-
-<div class="container">
-    <h3>Leave your comment</h3>
-    @auth
-    <form method="POST" action="/comment/">
-        @csrf
-
-        <input type="hidden" name="post_id" value="{{ $post->id }}">
-        <div class="form-group">
-            <textarea
-                class="form-control @error('body') border border-danger @enderror"
-                rows="3"
-                name="body"
-            >
-                    {{ old('body') }}
-                </textarea>
-
-            @error('body')
-            <div class="text-danger">
-                {{ $errors->first('body') }}
-            </div>
-            @enderror
-        </div>
-
-        <div class="form-group form-check">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
-        @endauth
-    @guest
-        Login to leave comment.
-    @endguest
-
-    <flash message="{{ session('flash') }}"></flash>
-</div>
-
-    <script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
