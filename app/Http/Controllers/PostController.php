@@ -11,13 +11,14 @@ class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
      * @return mixed
      */
     public function index()
     {
         if (request()->route()->getName() == 'user.posts') {
             $posts = auth()->user()->posts();
-            return view('posts.index', compact('posts'));
+            return view('posts.list', compact('posts'));
         }
         // or Post::paginate(10);
         $posts = Post::withCount(['likes', 'dislikes'])->latest()->get();
@@ -27,6 +28,7 @@ class PostController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
      * @return mixed
      * @throws AuthorizationException
      */
@@ -72,7 +74,6 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Post $post
-     *
      * @return mixed
      * @throws AuthorizationException
      */
@@ -85,7 +86,8 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Post        $post
+     * @param Post             $post
+     * @param StorePostRequest $request
      * @return mixed
      * @throws AuthorizationException
      */
@@ -102,14 +104,13 @@ class PostController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Post $post
-     *
      * @return mixed
      * @throws Exception
      */
     public function destroy(Post $post)
     {
         $this->authorize('delete', $post);
-        $post->delete($post);
+        $post->delete();
 
         return redirect(route('posts.index'));
     }

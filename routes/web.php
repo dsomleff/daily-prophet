@@ -30,3 +30,12 @@ Route::post('posts/{post}/dislike', 'LikeController@storeDislike');
 Route::delete('posts/{post}/like', 'LikeController@destroyLike');
 Route::delete('posts/{post}/dislike', 'LikeController@destroyLike');
 
+// Users Roles
+Route::get('users-roles', 'UserRoleController@index')->name('users-roles.index');
+//Route::get('users/{user}/profile', 'UserRoleController@show')->name('users-roles.show');
+
+Route::put('users-roles/{user}', 'UserRoleController@update')->name('users-roles.update');
+
+
+
+Route::delete('users-roles/{user}','UserRoleController@destroy')->name('users-roles.destroy');

@@ -2,7 +2,9 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
-<div class="container">
+{{--<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>--}}
+
+<div class="container" id="app">
     @foreach($posts as $post)
         <ul class="list-group">
             <li class="list-group-item">
@@ -12,11 +14,15 @@
 
                 <x-like-buttons :post="$post"/>
 
-                <x-crud-buttons :post="$post"/>
+                <x-post-crud-buttons :post="$post"/>
             </li>
         </ul>
 
     @endforeach
+
+    <flash message="Temporary message"></flash>
 {{--Pagination links--}}
 {{--        {{ $posts->links() }}--}}
 </div>
+
+<script src="{{ asset('js/app.js') }}" defer></script>

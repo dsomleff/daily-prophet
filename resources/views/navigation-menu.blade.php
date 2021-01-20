@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('user.posts') }}s" :active="request()->routeIs('user.posts')">
+                    <x-jet-nav-link href="{{ route('user.posts') }}" :active="request()->routeIs('user.posts')">
                         My Posts
                     </x-jet-nav-link>
                 </div>
@@ -34,6 +34,14 @@
                         Create Post
                     </x-jet-nav-link>
                 </div>
+
+                @can('view', auth()->user())
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('users-roles.index') }}" :active="request()->routeIs('users-roles.index')">
+                        Users
+                    </x-jet-nav-link>
+                </div>
+                @endcan
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

@@ -11,7 +11,6 @@
     <a href="{{ route('posts.index') }}">
         <button type="button" class="btn btn-link">Back</button>
     </a>
-</div>
 
 <div class="container">
     <hr>
@@ -52,7 +51,6 @@
         <div class="form-group">
             <textarea
                 class="form-control @error('body') border border-danger @enderror"
-                id="exampleFormControlTextarea1"
                 rows="3"
                 name="body"
             >

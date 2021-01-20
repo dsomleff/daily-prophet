@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -18,7 +17,6 @@ class PostPolicy
      * Determine whether the user can view any models.
      *
      * @param User $user
-     *
      * @return mixed
      */
     public function viewAny(User $user)
@@ -31,7 +29,6 @@ class PostPolicy
      *
      * @param User $user
      * @param Post $post
-     *
      * @return mixed
      */
     public function view(User $user, Post $post)
@@ -43,10 +40,9 @@ class PostPolicy
      * Determine whether the user can create models.
      *
      * @param User  $user
-     *
-     * @return mixed
+     * @return bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return $user->role->name == self::CONTRIBUTOR || self::ADMIN;
     }
@@ -56,10 +52,9 @@ class PostPolicy
      *
      * @param  User $user
      * @param Post  $post
-     *
-     * @return mixed
+     * @return bool
      */
-    public function update(User $user, Post $post)
+    public function update(User $user, Post $post): bool
     {
         return $post->user->is($user) || $user->role->name == self::ADMIN;
     }
@@ -69,10 +64,9 @@ class PostPolicy
      *
      * @param  User $user
      * @param Post  $post
-     *
-     * @return mixed
+     * @return bool
      */
-    public function delete(User $user, Post $post)
+    public function delete(User $user, Post $post): bool
     {
         return $post->user->is($user) || $user->role->name == self::ADMIN;
     }
@@ -82,7 +76,6 @@ class PostPolicy
      *
      * @param  User $user
      * @param Post  $post
-     *
      * @return mixed
      */
     public function restore(User $user, Post $post)
@@ -95,7 +88,6 @@ class PostPolicy
      *
      * @param  User $user
      * @param Post  $post
-     *
      * @return mixed
      */
     public function forceDelete(User $user, Post $post)
