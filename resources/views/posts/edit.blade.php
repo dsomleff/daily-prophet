@@ -48,5 +48,6 @@
         <a href="{{ route('posts.index') }}">
             <button type="button" class="btn btn-link">Back</button>
         </a>
+
     </div>
 @endcan

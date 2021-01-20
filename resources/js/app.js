@@ -2,14 +2,19 @@ require('./bootstrap');
 
 require('alpinejs');
 
-// window.Vue = require('vue');
-// Vue.component('flash', require('./components/Flash.vue').default);
-// const app = new Vue({
-//     el: '#app',
-// });
+import Vue from 'vue'
 
-import  Vue from  'vue'
-Vue.component('flash', require('./components/Flash.vue').default);
+//Main pages
+import Flash from './components/Flash.vue'
+
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: { Flash }
 });
+
+window.events = new Vue();
+
+window.flash = function (message) {
+    window.events.$emit('flash', message);
+}; // flash('my message')

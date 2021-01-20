@@ -41,7 +41,7 @@ class CommentController extends Controller
             'post_id' => request('post_id'),
             'body' => request('body')
         ]);
-        return back();
+        return back()->with('flash', 'Your comment has been left!');
     }
 
     /**
@@ -92,6 +92,6 @@ class CommentController extends Controller
         $this->authorize('deleteComment', $comment);
         $comment->delete();
 
-        return back();
+        return back()->with('flash', 'Your comment has been deleted!');
     }
 }

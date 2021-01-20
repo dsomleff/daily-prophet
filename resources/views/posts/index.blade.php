@@ -20,9 +20,9 @@
 
     @endforeach
 
-    <flash message="Temporary message"></flash>
+    <flash message="{{ session('flash') }}"></flash>
 {{--Pagination links--}}
 {{--        {{ $posts->links() }}--}}
 </div>
 
-<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ mix('js/app.js') }}"></script>

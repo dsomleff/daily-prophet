@@ -56,7 +56,8 @@ class PostController extends Controller
             'body' => request('body')
         ]);
 
-        return redirect(route('posts.index'));
+        return redirect(route('posts.index'))
+            ->with('flash', 'Your post has been created!');
     }
 
     /**
@@ -80,6 +81,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $this->authorize('update', $post);
+
         return view('posts.edit', compact('post'));
     }
 
@@ -97,7 +99,8 @@ class PostController extends Controller
 
         $post->update($request->validated());
 
-        return redirect(route('posts.show', $post));
+        return redirect(route('posts.show', $post))
+            ->with('flash', 'Your post has been updated!');
     }
 
     /**
@@ -112,6 +115,7 @@ class PostController extends Controller
         $this->authorize('delete', $post);
         $post->delete();
 
-        return redirect(route('posts.index'));
+        return redirect(route('posts.index'))
+            ->with('flash', 'Your post has been deleted!');
     }
 }
