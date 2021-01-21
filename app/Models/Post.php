@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    use Likable;
+    use Likeable;
 
     protected $fillable = ['user_id', 'title' , 'body'];
+
+    protected $appends = ['isLiked', 'isDisliked'];
 
     /**
      * Relationship

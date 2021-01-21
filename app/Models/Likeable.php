@@ -3,7 +3,7 @@
 
 namespace App\Models;
 
-trait Likable
+trait Likeable
 {
 
     /**
@@ -25,7 +25,7 @@ trait Likable
      */
     public function like($user = null, $liked = true)
     {
-        // updateOrCreate did work this time, so I replace it with next:
+        // updateOrCreate didn't work this time, so I replace it with next:
         $exist = Like::where('user_id', '=', $user ? $user->id : auth()->id())
             ->where( 'post_id', '=', $this->id)
             ->first();
@@ -69,6 +69,16 @@ trait Likable
     }
 
     /**
+     * Add this data into JSON output.
+     *
+     * @return bool
+     */
+    public function getIsLikedAttribute(): bool
+    {
+        return $this->isLikedBy(auth()->user());
+    }
+
+    /**
      * Display User own dislike
      *
      * @param User $user
@@ -80,6 +90,16 @@ trait Likable
             ->where('post_id', $this->id)
             ->where('liked', false)
             ->count();
+    }
+
+    /**
+     * Add this data into JSON output.
+     *
+     * @return bool
+     */
+    public function getIsDislikedAttribute(): bool
+    {
+        return $this->isDislikedBy(auth()->user());
     }
 
     /**

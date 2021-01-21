@@ -27,16 +27,14 @@ Route::delete('comment/{comment}', 'CommentController@destroy')->name('comments.
 
 // Likes
 Route::post('posts/{post}/like', 'LikeController@storeLike');
+Route::delete('posts/{post}/like', 'LikeController@destroy');
+
 Route::post('posts/{post}/dislike', 'LikeController@storeDislike');
-Route::delete('posts/{post}/like', 'LikeController@destroyLike');
-Route::delete('posts/{post}/dislike', 'LikeController@destroyLike');
+Route::delete('posts/{post}/dislike', 'LikeController@destroy');
 
 // Users Roles
 Route::get('users-roles', 'UserRoleController@index')->name('users-roles.index');
 //Route::get('users/{user}/profile', 'UserRoleController@show')->name('users-roles.show');
 
 Route::put('users-roles/{user}', 'UserRoleController@update')->name('users-roles.update');
-
-
-
 Route::delete('users-roles/{user}','UserRoleController@destroy')->name('users-roles.destroy');

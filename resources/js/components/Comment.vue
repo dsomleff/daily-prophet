@@ -12,17 +12,16 @@
 
         methods: {
             update() {
-                axios.put('/comment/' + this.attributes.id, {
+                axios.put(`/comment/${this.attributes.id}`, {
                     body: this.body
                 });
 
                 this.editing = false;
-
                 flash('Updated!');
             },
 
             destroy() {
-                axios.delete('/comment/' + this.attributes.id);
+                axios.delete(`/comment/${this.attributes.id}`);
 
                 setTimeout(() => { this.show = false; }, 300);
                 flash('Your reply has been deleted.');
