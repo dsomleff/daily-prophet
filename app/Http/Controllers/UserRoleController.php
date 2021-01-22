@@ -16,7 +16,8 @@ class UserRoleController extends Controller
     {
         $users = User::all();
         $roles = Role::all();
-        return view('users-roles.index', compact('users', 'roles'));
+
+        return view('users.index', compact('users', 'roles'));
     }
 
     /**
@@ -33,7 +34,7 @@ class UserRoleController extends Controller
         $user->where('id', $user->id)
             ->update(request(['role_id']));
 
-        return redirect(route('users-roles.index'));
+        return redirect(route('users.index'));
     }
 
 //    /**

@@ -2,39 +2,53 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//    return view('dashboard');
+//})->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+    return redirect('/');
+});
+
+Route::get('/', 'PostController@index')->name('main');
+Route::view('contacts', 'pages.contacts');
+Route::view('about', 'pages.about');
 
 // Posts
-Route::get('posts', 'PostController@index')->name('posts.index');
-Route::get('my-posts', 'PostController@index')->name('user.posts');
-Route::get('posts/create', 'PostController@create')->name('posts.create');
-Route::get('posts/{post}', 'PostController@show')->name('posts.show');
-Route::post('posts', 'PostController@store')->name('posts.store');
-Route::get('posts/{post}/edit', 'PostController@edit')->name('posts.edit');
-Route::put('posts/{post}', 'PostController@update')->name('posts.update');
-Route::delete('posts/{post}', 'PostController@destroy')->name('posts.destroy');
+Route::prefix('posts')->group(function () {
+    Route::get('/', 'PostController@index')->name('posts.index');
+    Route::get('/create', 'PostController@create')->name('posts.create');
+    Route::get('/{post}', 'PostController@show')->name('posts.show');
+    Route::post('/', 'PostController@store')->name('posts.store');
+    Route::get('/{post}/edit', 'PostController@edit')->name('posts.edit');
+    Route::put('/{post}', 'PostController@update')->name('posts.update');
+    Route::delete('/{post}', 'PostController@destroy')->name('posts.destroy');
+});
 
 // Comments
-Route::post('comment', 'CommentController@store');
+Route::prefix('comment')->group(function () {
+    Route::post('/', 'CommentController@store');
+    Route::delete('/{comment}', 'CommentController@destroy')->name('comments.destroy');
+});
 Route::put('comment/{comment}',  'CommentController@update');
-Route::delete('comment/{comment}', 'CommentController@destroy')->name('comments.destroy');
 
-// Likes
-Route::post('posts/{post}/like', 'LikeController@storeLike');
-Route::delete('posts/{post}/like', 'LikeController@destroy');
+// Likeable
+Route::prefix('posts/{post}')->group(function () {
+    // Likes
+    Route::post('/like', 'LikeController@storeLike');
+    Route::delete('/like', 'LikeController@destroy');
+    // Dislikes
+    Route::post('/dislike', 'LikeController@storeDislike');
+    Route::delete('/dislike', 'LikeController@destroy');
+});
 
-Route::post('posts/{post}/dislike', 'LikeController@storeDislike');
-Route::delete('posts/{post}/dislike', 'LikeController@destroy');
+// User's Posts
 
 // Users Roles
-Route::get('users-roles', 'UserRoleController@index')->name('users-roles.index');
-//Route::get('users/{user}/profile', 'UserRoleController@show')->name('users-roles.show');
+Route::prefix('users')->group(function () {
+    Route::get('/{user}', 'UserController@index')->name('users.posts');
+    Route::get('/', 'UserRoleController@index')->name('users.index');
+    Route::put('/{user}', 'UserRoleController@update')->name('users.update');
+    Route::delete('/{user}','UserController@destroy')->name('users.destroy');
 
-Route::put('users-roles/{user}', 'UserRoleController@update')->name('users-roles.update');
-Route::delete('users-roles/{user}','UserRoleController@destroy')->name('users-roles.destroy');
+});

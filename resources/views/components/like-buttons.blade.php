@@ -1,4 +1,5 @@
 <div class="form-inline">
+    {{ $post->id  }}
     @auth
         <likeable :post="{{ $post }}"></likeable>
     @endauth

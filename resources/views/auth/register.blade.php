@@ -1,60 +1,98 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@extends('layouts.app')
 
-        <x-jet-validation-errors class="mb-4" />
+@section('content')
+    <div class="container d-flex justify-content-center ">
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+    <!-- Login form -->
+        <div class="jumbotron w-50 mt-4 bg-white">
 
-            <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
 
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+<div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                        class="form-control form-control-lg @error('name') border border-danger @enderror"
+                        id="name"
+                        type="text"
+                        name="name"
+                        value="{{ old('name') }}"
+                        required>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
-
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-jet-label for="terms">
-                        <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms"/>
-
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
+                    @error('name')
+                        <div class="text-danger">
+                            {{ $errors->first('name') }}
                         </div>
-                    </x-jet-label>
+                    @enderror
                 </div>
-            @endif
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                        class="form-control form-control-lg @error('email') border border-danger @enderror"
+                        id="email"
+                        type="email"
+                        name="email"
+                        value="{{ old('email') }}"
+                        required>
+
+                    @error('email')
+                        <div class="text-danger">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                        class="form-control form-control-lg @error('password') border border-danger @enderror"
+                        id="password"
+                        type="password"
+                        name="password"
+                        required>
+
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                        Your password must be 8-20 characters long.
+                    </small>
+
+                    @error('password')
+                        <div class="text-danger">
+                            {{ $errors->first('password') }}
+                        </div>
+                    @enderror
+                </div>  
+
+                <div class="form-group">
+                    <label for="password_confirmation">Confirm password</label>
+                    <input
+                        class="form-control form-control-lg @error('password_confirmation') border border-danger @enderror"
+                        id="password_confirmation"
+                        type="password"
+                        name="password_confirmation"
+                        required>
+
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                        Your password must be 8-20 characters long.
+                    </small>
+
+                    @error('password_confirmation')
+                        <div class="text-danger">
+                            {{ $errors->first('password_confirmation') }}
+                        </div>
+                    @enderror
+                </div>   
+
+                <div class="form-group">
+                    <a href="{{ route('login') }}">
+                    <button type="button" class="btn btn-outline-primary mt-2 mb-2">
+                        Already registered?
+                    </button>
                 </a>
+                    <button type="submit" class="btn btn-primary mt-2 mb-2">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection
 
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>

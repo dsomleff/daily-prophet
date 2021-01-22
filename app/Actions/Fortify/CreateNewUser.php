@@ -12,6 +12,8 @@ class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
 
+    const REGULAR = 3;
+
     /**
      * Validate and create a newly registered user.
      *
@@ -31,6 +33,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'role_id' => self::REGULAR,
         ]);
     }
 }

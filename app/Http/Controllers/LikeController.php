@@ -14,6 +14,8 @@ class LikeController extends Controller
     public function storeLike(Post $post)
     {
         $post->like(auth()->user());
+
+        return back();
     }
 
     /**
@@ -24,6 +26,8 @@ class LikeController extends Controller
     public function storeDislike(Post $post)
     {
         $post->dislike(auth()->user());
+        return back();
+
     }
 
     /**
@@ -34,5 +38,7 @@ class LikeController extends Controller
     public function destroy(Post $post)
     {
         $post->unlike(auth()->user());
+        return back();
+
     }
 }

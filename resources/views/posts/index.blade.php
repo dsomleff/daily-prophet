@@ -1,24 +1,54 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" xmlns="http://www.w3.org/1999/html">
+@extends('layouts.app')
 
-<div class="container" id="app">
-    @foreach($posts as $post)
-        <ul class="list-group">
-            <li class="list-group-item">
-                <a href="{{ route('posts.show', $post) }}">
-                    {{ $post->title }}
-                </a> by {{ $post->user->name }}
+@section('content')
 
-                <x-like-buttons :post="$post"/>
+    @include('partials.block')
 
-                <x-post-crud-buttons :post="$post"/>
-            </li>
-        </ul>
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-md-16 blog-main">
+                <h3 class="pb-3 mb-4 h1 font-italic border-bottom">
+                    Latest posts
+                </h3>
 
-    @endforeach
+                <!-- Posts -->
+                @forelse($posts as $post)
+                    <div class="blog-post mb-5">
+                        <a href="{{ route('posts.show', $post) }}">
+                            <h2 class="blog-post-title h2">{{ $post->title }}</h2>
+                        </a>
+                        <p class="blog-post-meta h6">
+                            {{ $post->created_at->diffForHumans() }}  by
+                            <small class="text-muted">
+                                <a href="{{ route('users.posts', $post->user) }}">{{ $post->user->name }}</a>
+                            </small>
+                        </p>
+                        <p class="h5">
+                            {{ $post->body }}
+                        </p>
 
-    <flash message="{{ session('flash') }}"></flash>
-{{--Pagination links--}}
-{{--        {{ $posts->links() }}--}}
-</div>
+                        @include('partials.likes')
 
-<script src="{{ mix('js/app.js') }}"></script>
+
+                    </div>
+                @empty
+                    <div class="blog-post mb-5">
+                        <h3 class="pb-3 font-italic border-bottom">
+                            Nothing was found.
+                        </h3>
+                    </div>
+                @endforelse
+
+                <div class="mb-5">
+{{--                    {{ $posts->links() }}--}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{--    <flash message="{{ session('flash') }}"></flash>--}}
+
+    <script src="{{ mix('js/app.js') }}"></script>
+
+@endsection
+

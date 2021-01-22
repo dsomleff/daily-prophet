@@ -1,48 +1,66 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@extends('layouts.app')
 
-        <x-jet-validation-errors class="mb-4" />
+@section('content')
+    <div class="container d-flex justify-content-center ">
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
+    <!-- Login form -->
+        <div class="jumbotron w-50 mt-4 bg-white">
+            @if (session('status'))
+                <div class="mb-4 font-medium text-sm text-green-600">
+                    {{ session('status') }}
+                </div>
+            @endif
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
 
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                        class="form-control form-control-lg @error('email') border border-danger @enderror"
+                        id="email"
+                        type="email"
+                        name="email"
+                        value="{{ old('email') }}"
+                        required>
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
+                    @error('email')
+                        <div class="text-danger">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @enderror
+                </div>
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                        class="form-control form-control-lg @error('password') border border-danger @enderror"
+                        id="password"
+                        type="password"
+                        name="password"
+                        value="{{ old('password') }}"
+                        required>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                        Your password must be 8-20 characters long.
+                    </small>
 
-                <x-jet-button class="ml-4">
-                    {{ __('Login') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+                    @error('password')
+                        <div class="text-danger">
+                            {{ $errors->first('password') }}
+                        </div>
+                    @enderror
+                </div>    
+
+                <div class="form-group">
+                    <a href="{{ route('register') }}">
+                    <button type="button" class="btn btn-outline-primary mt-2 mb-2">
+                        Registration
+                    </button>
+                </a>
+                    <button type="submit" class="btn btn-primary mt-2 mb-2">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection

@@ -1,19 +1,23 @@
+@extends('layouts.app')
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-@can('create', App\Post::class)
+@section('content')
+    @can('create', App\Post::class)
     <div class="container">
-        <h1>Create a Post</h1>
+        <h1 class="h1 text-center text-primary">
+            Create new post
+        </h1>
+
         <form method="POST" action="{{ route('posts.store') }}">
             @csrf
             <div class="form-group">
-                <label for="postTitle">Post Title</label>
+                <label for="postTitle">Title</label>
                 <input
-                    class="form-control form-control-lg @error('title') border border-danger @enderror"
-                    type="text"
-                    name="title"
-                    value="{{ old('title') }}"
-                >
+                class="form-control form-control-lg @error('title') border border-danger @enderror"
+                id="postTitle"
+                type="text"
+                name="title"
+                value="{{ old('title') }}">
+
                 @error('title')
                     <div class="text-danger">
                         {{ $errors->first('title') }}
@@ -22,15 +26,13 @@
             </div>
 
             <div class="form-group">
-                <label for="postContext">Post Body</label>
+                <label for="postBody">Text</label>
                 <textarea
-                    class="form-control @error('body') border border-danger @enderror"
-                    id="exampleFormControlTextarea1"
-                    rows="3"
-                    name="body"
-                >
-                    {{ old('body') }}
-                </textarea>
+                class="form-control @error('body') border border-danger @enderror"
+                id="postBody"
+                rows="3"
+                name="body"
+                >{{ old('body') }}</textarea>
 
                 @error('body')
                     <div class="text-danger">
@@ -39,9 +41,15 @@
                 @enderror
             </div>
 
-            <div class="form-group form-check">
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <a href="{{ route('posts.index') }}">
+                    <button type="button" class="btn btn-outline-primary mt-2 mb-2">
+                        Back to all posts
+                    </button>
+                </a>
+                <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
             </div>
         </form>
     </div>
-@endcan
+    @endcan
+@endsection

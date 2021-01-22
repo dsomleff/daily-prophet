@@ -1,20 +1,36 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+@extends('layouts.app')
 
-<div class="container" id="app">
-    <h1 class="display-4">{{ $post->title }}</h1>
-    <p class="blockquote-footer">Posted by {{ $post->user->name }}</p>
+@section('content')
+    <div class="container" id="app">
+        <!-- Post -->
+        <h1 class="h1 text-center text-primary">
+            {{ $post->title }}
+        </h1>
+        <p class="h3 text-center">
+            Posted by
+            <a href="{{ route('users.posts', $post->user) }}">
+                {{ $post->user->name }}
+            </a>
 
-    <p class="lead">
-        {{ $post->body }}
-    </p>
+        </p>
+        <p class="lead">
+            {{ $post->body }}
+        </p>
 
-    <a href="{{ route('posts.index') }}">
-        <button type="button" class="btn btn-link">Back</button>
-    </a>
+        @include('partials.likes')
 
-    <div class="container">
-        <hr>
+        @include('partials.comments')
+
+        <a href="{{ route('posts.index') }}">
+            <button type="button" class="btn btn-outline-primary mt-2 mb-2">
+                Back to all posts
+            </button>
+        </a>
+
+        <flash message="{{ session('flash') }}"></flash>
     </div>
 
-    <x-comments-section :post="$post"/>
-</div>
+    <script src="{{ mix('js/app.js') }}"></script>
+@endsection
+
+

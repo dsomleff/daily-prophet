@@ -6,25 +6,26 @@
         <div class="row">
             <div class="col-md-16 blog-main">
                 <h3 class="pb-3 mb-4 h1 font-italic border-bottom">
-                    USRNAME
-                    <small class="text-muted"> joined Daily Prophet _______</small>
+                    {{ $user->name }}
+                    <small class="text-muted"> joined Daily Prophet {{ $user->created_at->diffForHumans()
+                    }}</small>
                 </h3>
 
                 <!-- Posts -->
-                <h3 class="h3 text-primary">My posts</h3>
-                @forelse($posts as $post)
+                <h3 class="h3 text-primary">Posts</h3>
+                @forelse($user->posts() as $post)
                     <div class="blog-post mb-5">
                         <a href="{{ route('posts.show', $post) }}">
                             <h2 class="blog-post-title h2">{{ $post->title }}</h2>
                         </a>
                         <p class="blog-post-meta h6">
-                            {{ $post->created_at->diffForHumans() }}  by 
+                            {{ $post->created_at->diffForHumans() }}  by
                             <small class="text-muted">
-                                <a href="#">{{ $post->user->name }}</a>
+                                {{ $post->user->name }}
                             </small>
                         </p>
                         <p class="h5">
-                            {{ $post->body }} 
+                            {{ $post->body }}
                         </p>
 
                         <div class="row">
@@ -52,38 +53,34 @@
                 @endforelse
 
                 <!-- Comments -->
-                <h3 class="h3 text-primary">My comments</h3>
-                <!-- forelse -->
+                <h3 class="h3 text-primary">Comments</h3>
+                @forelse($user->comments() as $comment)
                     <div class="blog-post mb-5">
                             <h2 class="blog-post-title h2">
-                                ___jdjfheurhvjkkdsncdnkjsve____
-                                <!-- comment text -->
+                                {{ $comment->text }}
                             </h2>
                         <p class="blog-post-meta h6">
-                            ___5 min ago____for____
-
-                            <a href="{{ route('posts.show', $post) }}">
-                                ___post_title____
+                            {{ $comment->created_at->diffForHumans() }}
+                            <a href="{{ route('posts.show', $comment->post_id) }}">
+                                {{ $comment->post->title }}
                             </a>
-
-                            <!-- created_at->diffForHumans() -->
                         </p>
-                    
-                        <!-- can('deleteComment', $post) -->
+
+                        @can('deleteComment', $post ?? '')
                             <form method="POST" action="">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
                             </form>
-                        <!-- endcan -->
+                        @endcan
                     </div>
-                <!-- empty -->
+                @empty
                     <div class="blog-post mb-5">
                         <h3 class="pb-3 font-italic border-bottom">
                             Nothing was found.
                         </h3>
                     </div>
-                <!-- endforelse -->
+                @endforelse
             </div>
         </div>
     </div>

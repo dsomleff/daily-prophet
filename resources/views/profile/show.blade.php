@@ -1,45 +1,135 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div>
-        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                @livewire('profile.update-profile-information-form')
+@section('content')
+    <div class="container">
+        <!-- User information -->
+        <h1 class="h1 text-center text-primary">
+            Update profile information
+        </h1>
 
-                <x-jet-section-border />
-            @endif
+        <form method="POST" action="{{ route('user-profile-information.update') }}">
+            @csrf
+            @method('PUT')
 
-            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.update-password-form')
-                </div>
-
-                <x-jet-section-border />
-            @endif
-
-            @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.two-factor-authentication-form')
-                </div>
-
-                <x-jet-section-border />
-            @endif
-
-            <div class="mt-10 sm:mt-0">
-                @livewire('profile.logout-other-browser-sessions-form')
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                class="form-control form-control-lg @error('name') border border-danger @enderror"
+                type="text"
+                name="name"
+                value="{{ Auth::user()->name }}"
+                >
+                @error('name')
+                    <div class="text-danger">
+                        {{ $errors->first('name') }}
+                    </div>
+                @enderror
             </div>
 
-            @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
-                <x-jet-section-border />
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                class="form-control form-control-lg @error('email') border border-danger @enderror"
+                type="email"
+                name="email"
+                value="{{ Auth::user()->email }}"
+                >
 
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.delete-user-form')
-                </div>
-            @endif
-        </div>
+                @error('email')
+                    <div class="text-danger">
+                        {{ $errors->first('email') }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="form-group form-check">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+
+        <!-- Password -->
+        <h1 class="h1 text-center text-primary">
+            Update password
+        </h1>
+
+        <form method="POST" action="{{ route('user-password.update') }}">
+            @csrf
+            @method('PUT')
+
+            <div class="form-group">
+                <label for="email">Current password</label>
+                <input
+                class="form-control form-control-lg @error('current_password') border border-danger @enderror"
+                type="password"
+                name="current_password"
+                autocomplete="current-password"
+                >
+                @error('current_password')
+                    <div class="text-danger">
+                        {{ $errors->first('current_password') }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="email">New password</label>
+                <input
+                class="form-control form-control-lg @error('password') border border-danger @enderror"
+                type="password"
+                name="password"
+                >
+                @error('password')
+                    <div class="text-danger">
+                        {{ $errors->first('password') }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirmation">Confirm new password</label>
+                <input
+                class="form-control form-control-lg @error('password_confirmation') border border-danger @enderror"
+                type="password"
+                name="password_confirmation"
+                >
+                @error('password_confirmation')
+                    <div class="text-danger">
+                        {{ $errors->first('password_confirmation') }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="form-group form-check">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+
+        <!-- Delet account -->
+        <h1 class="h1 text-center text-primary">
+            Delete account
+        </h1>
+
+        <form method="POST" action="{{ route('users.destroy', auth()->id()) }}">
+            @csrf
+            @method('DELETE')
+            <div class="form-group">
+                <label for="email">Current password</label>
+                <input
+                class="form-control form-control-lg @error('current_password') border border-danger @enderror"
+                type="password"
+                name="current_password"
+                autocomplete="current-password"
+                >
+                @error('current_password')
+                    <div class="text-danger">
+                        {{ $errors->first('current_password') }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="form-group form-check">
+                <button type="submit" class="btn btn-danger">Delete account</button>
+            </div>
+        </form>
     </div>
-</x-app-layout>
+@endsection
