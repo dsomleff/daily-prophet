@@ -40,7 +40,7 @@
                 @endforelse
 
                 <div class="mb-5">
-{{--                    {{ $posts->links() }}--}}
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>

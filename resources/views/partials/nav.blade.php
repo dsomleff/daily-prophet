@@ -14,11 +14,11 @@
 
 
 
-{{--          @can('view', auth()->user())--}}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('users.index') }}">Users</a>
-          </li>
-{{--          @endcan--}}
+          @can('view', auth()->user())
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('users.index') }}">Users</a>
+              </li>
+          @endcan
 
 
 
@@ -35,7 +35,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('users.posts', Auth::user()) }}">Personal area</a>
-          <a class="dropdown-item" href="{{ route('posts.create') }}">Create new post</a>
+            @can('viewAny', \App\Models\Post::class)
+                <a class="dropdown-item" href="{{ route('posts.create') }}">Create new post</a>
+            @endcan
           <a class="dropdown-item" href="/user/profile">Manage account</a>
           <div class="dropdown-divider"></div>
             <form method="POST" action="{{ route('logout') }}">                    @csrf

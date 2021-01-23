@@ -17,11 +17,11 @@ class PostPolicy
      * Determine whether the user can view any models.
      *
      * @param User $user
-     * @return mixed
+     * @return bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
-        //
+        return $this->create($user);
     }
 
     /**
@@ -39,12 +39,13 @@ class PostPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param User  $user
+     * @param User $user
+     *
      * @return bool
      */
     public function create(User $user): bool
     {
-        return $user->role->name == self::CONTRIBUTOR || self::ADMIN;
+        return $user->role->name == self::CONTRIBUTOR || $user->role->name == self::ADMIN;
     }
 
     /**

@@ -4,17 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 
 class UserRoleController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @param User $user
+     *
      * @return mixed
+     * @throws AuthorizationException
      */
-    public function index()
+    public function index(User $user)
     {
-        $users = User::all();
+        $this->authorize('view', $user);
+
+        $users = $user->all();
         $roles = Role::all();
 
         return view('users.index', compact('users', 'roles'));

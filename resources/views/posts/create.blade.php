@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @can('create', App\Post::class)
+    @can('create', App\Models\Post::class)
     <div class="container">
         <h1 class="h1 text-center text-primary">
             Create new post

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
+use App\Models\User;
 use Exception;
 use App\Models\Post;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -16,12 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        if (request()->route()->getName() == 'user.posts') {
-            $posts = auth()->user()->posts();
-            return view('posts.list', compact('posts'));
-        }
-        // or Post::paginate(10);
-        $posts = Post::withCount(['likes', 'dislikes'])->latest()->get();
+        $posts = Post::withCount(['likes', 'dislikes'])->latest()->paginate(5);
 
         return view('posts.index', compact('posts'));
     }
@@ -35,6 +31,7 @@ class PostController extends Controller
     public function create()
     {
         $this->authorize('create', Post::class);
+
         return view('posts.create');
     }
 

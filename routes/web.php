@@ -42,12 +42,10 @@ Route::prefix('posts/{post}')->group(function () {
     Route::delete('/dislike', 'LikeController@destroy');
 });
 
-// User's Posts
-
-// Users Roles
+// Users
 Route::prefix('users')->group(function () {
-    Route::get('/{user}', 'UserController@index')->name('users.posts');
     Route::get('/', 'UserRoleController@index')->name('users.index');
+    Route::get('/{user}', 'UserController@index')->name('users.posts');
     Route::put('/{user}', 'UserRoleController@update')->name('users.update');
     Route::delete('/{user}','UserController@destroy')->name('users.destroy');
 
