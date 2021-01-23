@@ -13,9 +13,3 @@ const app = new Vue({
     el: '#app',
     components: { Flash, Comment, Likeable }
 });
-
-window.events = new Vue();
-
-window.flash = function (message) {
-    window.events.$emit('flash', message);
-}; // flash('my message')

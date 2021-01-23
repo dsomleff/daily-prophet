@@ -31,9 +31,7 @@
             },
 
             hide() {
-                setTimeout(() => {
-                    this.show = false;
-                }, 3000);
+                setTimeout(() => this.show = false, 3000);
             }
         }
     };

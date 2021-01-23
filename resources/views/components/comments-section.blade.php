@@ -69,7 +69,4 @@
     @guest
         Login to leave comment.
     @endguest
-    <flash message="{{ session('flash') }}"></flash>
 </div>
-
-<script src="{{ mix('js/app.js') }}"></script>

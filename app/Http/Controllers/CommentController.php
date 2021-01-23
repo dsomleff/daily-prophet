@@ -97,6 +97,6 @@ class CommentController extends Controller
             return response(['status' => 'Comment deleted']);
         }
 
-        return back();
+        return back()->with('flash', 'Your comment has been deleted!');
     }
 }

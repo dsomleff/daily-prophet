@@ -41,7 +41,8 @@ class UserRoleController extends Controller
         $user->where('id', $user->id)
             ->update(request(['role_id']));
 
-        return redirect(route('users.index'));
+        return redirect(route('users.index'))
+            ->with('flash', 'User role has been updated!');
     }
 
 //    /**

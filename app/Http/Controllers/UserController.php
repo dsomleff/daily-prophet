@@ -31,6 +31,7 @@ class UserController extends Controller
 //        $this->authorize('delete', $post);
         $user->delete();
 
-        return redirect(route('main'));
+        return redirect(route('main'))
+            ->with('flash', 'Your account has been deleted!');
     }
 }

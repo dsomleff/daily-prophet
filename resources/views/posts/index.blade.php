@@ -2,9 +2,9 @@
 
 @section('content')
 
-    @include('partials.block', $posts)
+    @include('partials.block')
 
-    <div class="container" id="app">
+    <div class="container">
         <div class="row">
             <div class="col-md-16 blog-main">
                 <h3 class="pb-3 mb-4 h1 font-italic border-bottom">
@@ -13,10 +13,6 @@
 
                 <!-- Posts -->
                 @forelse($posts as $post)
-                    @if($loop->first)
-                        @continue
-                    @endif
-
                     <div class="blog-post mb-5">
                         <a href="{{ route('posts.show', $post) }}">
                             <h2 class="blog-post-title h2">{{ $post->title }}</h2>
@@ -49,10 +45,4 @@
             </div>
         </div>
     </div>
-
-{{--    <flash message="{{ session('flash') }}"></flash>--}}
-
-    <script src="{{ mix('js/app.js') }}"></script>
-
 @endsection
-

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" id="app">
+    <div class="container">
         <!-- Post -->
         <h1 class="h1 text-center text-primary">
             {{ $post->title }}
@@ -28,11 +28,7 @@
                 Back to all posts
             </button>
         </a>
-
-        <flash message="{{ session('flash') }}"></flash>
     </div>
-
-    <script src="{{ mix('js/app.js') }}"></script>
 @endsection
 
 
