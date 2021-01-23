@@ -17,6 +17,8 @@
             {{ $post->body }}
         </p>
 
+        @include('partials.post-ud-buttons')
+
         @include('partials.likes')
 
         @include('partials.comments')
