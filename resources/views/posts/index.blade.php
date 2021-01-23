@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @include('partials.block')
+    @include('partials.block', $posts)
 
     <div class="container" id="app">
         <div class="row">
@@ -13,6 +13,10 @@
 
                 <!-- Posts -->
                 @forelse($posts as $post)
+                    @if($loop->first)
+                        @continue
+                    @endif
+
                     <div class="blog-post mb-5">
                         <a href="{{ route('posts.show', $post) }}">
                             <h2 class="blog-post-title h2">{{ $post->title }}</h2>
