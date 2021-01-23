@@ -17,14 +17,14 @@
                 });
 
                 this.editing = false;
-                flash('Updated!');
+                flash('Your comment has been updated.');
             },
 
             destroy() {
                 axios.delete(`/comment/${this.attributes.id}`);
 
                 setTimeout(() => { this.show = false; }, 300);
-                flash('Your reply has been deleted.');
+                flash('Your comment has been deleted.');
             }
         }
     }

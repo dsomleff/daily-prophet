@@ -22,6 +22,7 @@
         @include('partials.likes')
 
         @include('partials.comments')
+        @include('partials.comments-form')
 
         <a href="{{ route('posts.index') }}">
             <button type="button" class="btn btn-outline-primary mt-2 mb-2">
