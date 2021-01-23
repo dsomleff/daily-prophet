@@ -3811,7 +3811,7 @@ __webpack_require__.r(__webpack_exports__);
         body: this.body
       });
       this.editing = false;
-      flash('Updated!');
+      flash('Your comment has been updated.');
     },
     destroy: function destroy() {
       var _this = this;
@@ -3820,7 +3820,7 @@ __webpack_require__.r(__webpack_exports__);
       setTimeout(function () {
         _this.show = false;
       }, 300);
-      flash('Your reply has been deleted.');
+      flash('Your comment has been deleted.');
     }
   }
 });
@@ -3873,7 +3873,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       setTimeout(function () {
-        _this2.show = false;
+        return _this2.show = false;
       }, 3000);
     }
   }
@@ -3918,7 +3918,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     like_classes: function like_classes() {
-      return ['btn', this.isLiked ? "btn-info btn-sm" : "btn-secondary btn-sm"];
+      return ['btn', this.isLiked ? "btn-info btn-sm mr-2" : "btn-secondary btn-sm mr-2"];
     },
     likeEndpoint: function likeEndpoint() {
       return "/posts/".concat(this.post.id, "/like");
@@ -3927,13 +3927,13 @@ __webpack_require__.r(__webpack_exports__);
       return "/posts/".concat(this.post.id, "/dislike");
     },
     likesCountColor: function likesCountColor() {
-      return [this.isLiked ? "text-info" : "text-muted"];
+      return [this.isLiked ? "text-info auto mr-2" : "text-muted mr-2"];
     },
     dislike_classes: function dislike_classes() {
-      return ['btn', this.isDisliked ? "btn-danger btn-sm" : "btn-secondary btn-sm"];
+      return ['btn', this.isDisliked ? "btn-danger btn-sm mr-2" : "btn-secondary btn-sm mr-2"];
     },
     dislikesCountColor: function dislikesCountColor() {
-      return [this.isDisliked ? "text-danger" : "text-muted"];
+      return [this.isDisliked ? "text-danger mr-2" : "text-muted mr-2"];
     }
   },
   methods: {
@@ -3943,7 +3943,7 @@ __webpack_require__.r(__webpack_exports__);
     like: function like() {
       var _this = this;
 
-      if (this.dislikesCount > 0) {
+      if (this.isDisliked === true) {
         this.dislikesCount--;
         this.isDisliked = false;
       }
@@ -3962,7 +3962,7 @@ __webpack_require__.r(__webpack_exports__);
       this.isDisliked ? this.unDislike() : this.dislike();
     },
     dislike: function dislike() {
-      if (this.likesCount > 0) {
+      if (this.isLiked === true) {
         this.likesCount--;
         this.isLiked = false;
       }
@@ -4010,11 +4010,6 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3__.default({
     Likeable: _components_Likeable_vue__WEBPACK_IMPORTED_MODULE_2__.default
   }
 });
-window.events = new vue__WEBPACK_IMPORTED_MODULE_3__.default();
-
-window.flash = function (message) {
-  window.events.$emit('flash', message);
-}; // flash('my message')
 
 /***/ }),
 
@@ -4022,7 +4017,11 @@ window.flash = function (message) {
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
@@ -4033,6 +4032,13 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+window.events = new vue__WEBPACK_IMPORTED_MODULE_0__.default();
+
+window.flash = function (message) {
+  window.events.$emit('flash', message);
+}; // flash('my message')
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

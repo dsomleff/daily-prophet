@@ -108,7 +108,7 @@ trait Likeable
      * @param null $user
      * @return mixed
      */
-    public function unlike($user = null)
+    public function reverse($user = null)
     {
         return $user->likes->where('user_id', $user->id ?? auth()->id())->first()->delete();
     }

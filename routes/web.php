@@ -32,14 +32,14 @@ Route::prefix('comment')->group(function () {
 });
 Route::put('comment/{comment}',  'CommentController@update');
 
-// Likeable
+// Like/Dislike System
 Route::prefix('posts/{post}')->group(function () {
     // Likes
-    Route::post('/like', 'LikeController@storeLike');
+    Route::post('/like', 'LikeController@store');
     Route::delete('/like', 'LikeController@destroy');
     // Dislikes
-    Route::post('/dislike', 'LikeController@storeDislike');
-    Route::delete('/dislike', 'LikeController@destroy');
+    Route::post('/dislike', 'DislikeController@store');
+    Route::delete('/dislike', 'DislikeController@destroy');
 });
 
 // Users

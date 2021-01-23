@@ -28,7 +28,7 @@ export default {
 
     computed: {
         like_classes() {
-            return ['btn', this.isLiked ? "btn-info btn-sm" :  "btn-secondary btn-sm"];
+            return ['btn', this.isLiked ? "btn-info btn-sm mr-2" :  "btn-secondary btn-sm mr-2"];
         },
 
         likeEndpoint() {
@@ -40,15 +40,15 @@ export default {
         },
 
         likesCountColor() {
-            return [this.isLiked ? "text-info" :  "text-muted"];
+            return [this.isLiked ? "text-info auto mr-2" :  "text-muted mr-2"];
         },
 
         dislike_classes() {
-            return ['btn', this.isDisliked ? "btn-danger btn-sm" :  "btn-secondary btn-sm"];
+            return ['btn', this.isDisliked ? "btn-danger btn-sm mr-2" :  "btn-secondary btn-sm mr-2"];
         },
 
         dislikesCountColor(){
-            return [this.isDisliked ? "text-danger" :  "text-muted"];
+            return [this.isDisliked ? "text-danger mr-2" :  "text-muted mr-2"];
         },
     },
 
@@ -58,7 +58,7 @@ export default {
         },
 
         like() {
-            if (this.dislikesCount > 0) {
+            if (this.isDisliked === true) {
                 this.dislikesCount --;
                 this.isDisliked = false;
             }
@@ -80,7 +80,7 @@ export default {
         },
 
         dislike() {
-            if (this.likesCount > 0) {
+            if (this.isLiked === true) {
                 this.likesCount --;
                 this.isLiked = false;
             }

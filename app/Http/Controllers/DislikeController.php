@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Http\Request;
 
-class LikeController extends Controller
+class DislikeController extends Controller
 {
     /**
-     * Store like in storage.
+     * Store dislike in storage.
      *
      * @param Post $post
      */
     public function store(Post $post)
     {
-        $post->like(auth()->user());
+        $post->dislike(auth()->user());
     }
 
     /**
-     * Remove like.
+     * Remove dislike.
      *
      * @param Post $post
      * @return mixed

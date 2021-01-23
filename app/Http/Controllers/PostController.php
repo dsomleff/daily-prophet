@@ -65,6 +65,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $post = $post->withCount(['likes', 'dislikes'])->where('id', $post->id)->first();
         return view('posts.show', compact('post'));
     }
 
