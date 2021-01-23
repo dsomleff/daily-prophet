@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCommentRequest;
 use Exception;
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -31,16 +32,19 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StoreCommentRequest $request
      * @return mixed
      */
-    public function store(Request $request)
+    public function store(StoreCommentRequest $request)
     {
+        $request->validated();
+
         Comment::create([
             'user_id' => auth()->id(),
             'post_id' => request('post_id'),
             'body' => request('body')
         ]);
+
         return back()->with('flash', 'Your comment has been left!');
     }
 

@@ -47,9 +47,9 @@
                     name="body">{{ old('body') }}</textarea>
 
             @error('body')
-            <div class="text-danger">
-                {{ $errors->first('body') }}
-            </div>
+                <div class="text-danger">
+                    {{ $errors->first('body') }}
+                </div>
             @enderror
         </div>
 
