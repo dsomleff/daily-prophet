@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>df210116-5656-462b-a3da-75b7255899d1.SCHEMA:ing_test</OriginalElement>
+  <nodes>
+    <node x="201.0" y="0.0">df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.roles</node>
+    <node x="0.0" y="1105.0">df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.migrations</node>
+    <node x="1119.5" y="0.0">df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.failed_jobs</node>
+    <node x="41.0" y="620.0">df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.sessions</node>
+    <node x="145.5" y="193.0">df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.users</node>
+    <node x="768.5" y="0.0">df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.personal_access_tokens</node>
+    <node x="271.0" y="1105.0">df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.password_resets</node>
+    <node x="462.5" y="865.0">df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.likes</node>
+    <node x="69.03125" y="865.0">df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.comments</node>
+    <node x="322.0" y="620.0">df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.posts</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.likes" target="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.posts">
+      <point x="-65.25" y="-97.5" />
+      <point x="527.75" y="840.0" />
+      <point x="517.75" y="840.0" />
+      <point x="65.25" y="97.5" />
+    </edge>
+    <edge source="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.sessions" target="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.users">
+      <point x="0.0" y="-97.5" />
+      <point x="171.5" y="600.0" />
+      <point x="270.375" y="600.0" />
+      <point x="-41.625" y="188.5" />
+    </edge>
+    <edge source="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.comments" target="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.users">
+      <point x="-65.25" y="-97.5" />
+      <point x="134.28125" y="840.0" />
+      <point x="30.5" y="840.0" />
+      <point x="30.5" y="590.0" />
+      <point x="187.125" y="590.0" />
+      <point x="-124.875" y="188.5" />
+    </edge>
+    <edge source="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.likes" target="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.users">
+      <point x="65.25" y="-97.5" />
+      <point x="658.25" y="840.0" />
+      <point x="630.875" y="840.0" />
+      <point x="630.875" y="590.0" />
+      <point x="436.875" y="590.0" />
+      <point x="124.875" y="188.5" />
+    </edge>
+    <edge source="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.users" target="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.roles">
+      <point x="0.0" y="-188.5" />
+      <point x="0.0" y="71.5" />
+    </edge>
+    <edge source="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.comments" target="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.posts">
+      <point x="65.25" y="-97.5" />
+      <point x="264.78125" y="840.0" />
+      <point x="387.25" y="840.0" />
+      <point x="-65.25" y="97.5" />
+    </edge>
+    <edge source="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.posts" target="df210116-5656-462b-a3da-75b7255899d1.TABLE:ing_test.users">
+      <point x="0.0" y="-97.5" />
+      <point x="452.5" y="600.0" />
+      <point x="353.625" y="600.0" />
+      <point x="41.625" y="188.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7197640117994101" x="668.0" y="611.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
