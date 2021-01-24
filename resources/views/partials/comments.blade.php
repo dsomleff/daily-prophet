@@ -9,7 +9,7 @@
             <div class="col-md-8 pb-3" v-show="show">
                 <p>
                     <strong>
-                        <a href="{{ route('users.posts', $post->user) }}">
+                        <a href="{{ route('users.posts', $comment->user) }}">
                             {{ $comment->user->name }}
                         </a>
                         @if ($comment->user->name === $post->user->name)

@@ -52,9 +52,9 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
-        User::factory(10)->create();
-        Post::factory(10)->create();
+        User::factory(9)->create();
+        Post::factory(9)->create();
         Comment::factory(8)->create();
-        Like::factory(8)->create();
+        Like::factory(5)->create();
     }
 }
