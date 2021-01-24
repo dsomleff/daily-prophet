@@ -68,21 +68,21 @@
     @endauth
 
     @guest
-        <button>
-            <i class="bi bi-hand-thumbs-up"></i>
+        <button class="btn-secondary btn-sm mr-2">
+{{--            <i class="bi bi-hand-thumbs-up"></i>--}}
             +
         </button>
 
-        <span>
+        <span class="text-muted mr-2">
                 {{ $post->likes_count }}
             </span>
 
-        <button>
-            <i class="bi bi-hand-thumbs-down"></i>
+        <button class="btn-secondary btn-sm mr-2">
+{{--            <i class="bi bi-hand-thumbs-down"></i>--}}
             -
         </button>
 
-        <span>
+        <span class="text-muted mr-2">
                 {{ $post->dislikes_count }}
             </span>
     @endguest

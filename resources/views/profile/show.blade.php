@@ -43,7 +43,7 @@
             </div>
 
             <div class="form-group form-check">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure?');">Submit</button>
             </div>
         </form>
 
@@ -100,7 +100,7 @@
             </div>
 
             <div class="form-group form-check">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure?');">Submit</button>
             </div>
         </form>
 
@@ -128,7 +128,7 @@
             </div>
 
             <div class="form-group form-check">
-                <button type="submit" class="btn btn-danger">Delete account</button>
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete account</button>
             </div>
         </form>
     </div>

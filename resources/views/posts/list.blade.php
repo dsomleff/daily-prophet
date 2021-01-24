@@ -53,13 +53,6 @@
                             </a>
                         </p>
 
-                        @can('deleteComment', $post ?? '')
-                            <form method="POST" action="">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
-                            </form>
-                        @endcan
                     </div>
                 @empty
                     <div class="blog-post mb-5">

@@ -13,6 +13,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Joined</th>
                 <th scope="col">Role</th>
+                <th scope="col"></th>
             </tr>
         </thead>
 
@@ -60,11 +61,22 @@
                             </div>
                         </div>
                     </td>
+                    <td>
+                        <form method="POST" action="{{ route('users.destroy', $user->id ) }}">
+                            @csrf
+                            @method('DELETE')
+                            <div class="form-group form-check">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete
+                                                                                                  account</button>
+                            </div>
+                        </form>
+                    </td>
                 </tr>
             @empty
                 <tr>
                     <th scope="row">#</th>
                     <td>Registered users not found.</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>

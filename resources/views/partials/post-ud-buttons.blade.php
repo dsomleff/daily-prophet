@@ -9,7 +9,7 @@
         <form method="POST" action="{{ route('posts.destroy', $post) }}">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-outline-danger mt-2 mb-2">Delete</button>
+            <button type="submit" class="btn btn-outline-danger mt-2 mb-2" onclick="return confirm('Are you sure?');">Delete</button>
         </form>
     @endcan
 </div>
