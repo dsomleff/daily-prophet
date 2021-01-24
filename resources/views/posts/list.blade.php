@@ -3,20 +3,20 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container mt-2">
         <div class="row">
             <div class="col-md-16 blog-main">
-                <h3 class="pb-3 mb-4 h1 font-italic border-bottom">
+                <h3 class="pb-3 mb-4 h1 font-italic">
                     {{ $user->name }}
-                    <small class="text-muted">
-                        joined Daily Prophet {{ $user->created_at->diffForHumans()}}
+                    <small class="text-info">
+                        ({{ $user->role->name }}) joined Daily Prophet {{ $user->created_at->diffForHumans()}}
                     </small>
                 </h3>
 
                 <!-- Posts -->
-                <h3 class="h3 text-primary">Posts</h3>
+                <h3 class="h2 text-info">Posts</h3>
                 @forelse($user->posts() as $post)
-                    <div class="blog-post mb-5">
+                    <div class="blog-post mb-3">
                         <a href="{{ route('posts.show', $post) }}">
                             <h2 class="blog-post-title h2">
                                 {{ $post->title }}
@@ -28,7 +28,7 @@
                                 {{ $post->user->name }}
                             </small>
                         </p>
-                        <p class="h5">
+                        <p>
                             {{ $post->body }}
                         </p>
 
@@ -44,15 +44,15 @@
                 @endforelse
 
                 <!-- Comments -->
-                <h3 class="h3 text-primary">Comments</h3>
+                <h3 class="h2 text-info">Comments</h3>
                 @forelse($user->comments() as $comment)
-                    <div class="blog-post mb-5">
-                            <h2 class="blog-post-title h2">
-                                {{ $comment->text }}
+                    <div class="blog-post mb-3">
+                            <h2 class="h4">
+                                {{ $comment->body }}
                             </h2>
                         <p class="blog-post-meta h6">
-                            {{ $comment->created_at->diffForHumans() }}
-                            <a href="{{ route('posts.show', $comment->post_id) }}">
+                            {{ $comment->created_at->diffForHumans() }} for
+                            <a href="{{ route('posts.show', $comment->post_id) }}" class="text-info">
                                 {{ $comment->post->title }}
                             </a>
                         </p>

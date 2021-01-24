@@ -57,11 +57,13 @@
 
                 <div class="form-group">
                     <a href="{{ route('register') }}">
-                    <button type="button" class="btn btn-outline-primary mt-2 mb-2">
+                    <button type="button" class="btn btn-outline-info mt-2 mb-2">
                         Registration
                     </button>
                 </a>
-                    <button type="submit" class="btn btn-primary mt-2 mb-2">Login</button>
+                    <button type="submit" class="btn btn-info mt-2 mb-2">
+                        Login
+                    </button>
                 </div>
             </form>
         </div>

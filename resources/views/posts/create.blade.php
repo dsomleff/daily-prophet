@@ -3,8 +3,8 @@
 
 @section('content')
     @can('create', App\Models\Post::class)
-    <div class="container">
-        <h1 class="h1 text-center text-primary">
+    <div class="container mt-2">
+        <h1 class="h1 text-center text-info">
             Create new post
         </h1>
 
@@ -31,11 +31,11 @@
             <div class="form-group">
                 <label for="postBody">Text</label>
                 <textarea
-                class="form-control @error('body') border border-danger @enderror"
-                id="postBody"
-                rows="3"
-                name="body"
-                required
+                    class="form-control @error('body') border border-danger @enderror"
+                    id="postBody"
+                    rows="10"
+                    name="body"
+                    required
                 >{{ old('body') }}</textarea>
 
                 @error('body')
@@ -47,11 +47,11 @@
 
             <div class="form-group">
                 <a href="{{ route('posts.index') }}">
-                    <button type="button" class="btn btn-outline-primary mt-2 mb-2">
+                    <button type="button" class="btn btn-outline-info mt-2 mb-2">
                         Back to all posts
                     </button>
                 </a>
-                <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
+                <button type="submit" class="btn btn-info mt-2 mb-2">Submit</button>
             </div>
         </form>
     </div>

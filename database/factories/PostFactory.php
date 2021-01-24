@@ -22,7 +22,8 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        $usersIds = User::where('role_id', '!=', 1)->pluck('id')->toArray();
+        $usersIds = User::where('role_id', '=', 2)->pluck('id')->toArray();
+
         return [
             'user_id' => $this->faker->randomElement($usersIds),
             'title' => $this->faker->sentence,

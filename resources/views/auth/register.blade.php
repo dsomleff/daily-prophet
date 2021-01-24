@@ -90,11 +90,13 @@
 
                 <div class="form-group">
                     <a href="{{ route('login') }}">
-                    <button type="button" class="btn btn-outline-primary mt-2 mb-2">
+                    <button type="button" class="btn btn-outline-info mt-2 mb-2">
                         Already registered?
                     </button>
                 </a>
-                    <button type="submit" class="btn btn-primary mt-2 mb-2">Register</button>
+                    <button type="submit" class="btn btn-info mt-2 mb-2">
+                        Register
+                    </button>
                 </div>
             </form>
         </div>

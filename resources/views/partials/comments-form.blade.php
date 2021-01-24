@@ -1,6 +1,6 @@
 <!-- Leave the comment -->
-<h3>Leave your comment</h3>
 @auth
+    <h3>Leave your comment</h3>
     <form method="POST" action="/comment/">
         @csrf
 
@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+            <button type="submit" class="btn btn-sm btn-info">Save</button>
         </div>
     </form>
 @endauth

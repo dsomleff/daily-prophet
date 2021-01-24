@@ -1,5 +1,5 @@
 <!-- Comments -->
-<h3 class="pb-3 mt-3 h5 font-italic border-bottom">
+<h3 class="pb-2 mt-4 h5 font-italic border-bottom">
     Comments
 </h3>
 
@@ -9,8 +9,9 @@
             <div class="col-md-8 pb-3" v-show="show">
                 <p>
                     <strong>
-                        {{ $comment->user->name }}
-
+                        <a href="{{ route('users.posts', $post->user) }}">
+                            {{ $comment->user->name }}
+                        </a>
                         @if ($comment->user->name === $post->user->name)
                             <small class="text-muted"> author</small>
                         @endif
@@ -22,8 +23,8 @@
                         <textarea class="form-control" rows="3" v-model="body"></textarea>
                     </div>
 
-                    <button class="btn btn-sm btn-primary" @click="update">Update</button>
-                    <button class="btn btn-sm btn-link" @click="editing = false">Cancel</button>
+                    <button class="btn btn-sm btn-info" @click="update">Update</button>
+                    <button class="btn btn-sm btn-link text-info" @click="editing = false">Cancel</button>
                 </div>
 
                 <p v-else v-text="body"></p>
@@ -37,7 +38,7 @@
                     <div>
                         <button
                             type="submit"
-                            class="btn btn-sm btn-outline-primary"
+                            class="btn btn-sm btn-outline-info"
                             @click="editing = true"
                         >Edit</button>
 

@@ -2,9 +2,9 @@
 @section('title', Auth::user()->name . ' | Manage Account')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-2">
         <!-- User information -->
-        <h1 class="h1 text-center text-primary">
+        <h1 class="h1 text-center text-info">
             Update profile information
         </h1>
 
@@ -44,12 +44,16 @@
             </div>
 
             <div class="form-group form-check">
-                <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure?');">Submit</button>
+                <button type="submit"
+                        class="btn btn-info"
+                        onclick="return confirm('Are you sure?');">
+                    Submit
+                </button>
             </div>
         </form>
 
         <!-- Password -->
-        <h1 class="h1 text-center text-primary">
+        <h1 class="h1 text-center text-info">
             Update password
         </h1>
 
@@ -101,12 +105,12 @@
             </div>
 
             <div class="form-group form-check">
-                <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure?');">Submit</button>
+                <button type="submit" class="btn btn-info" onclick="return confirm('Are you sure?');">Submit</button>
             </div>
         </form>
 
         <!-- Delet account -->
-        <h1 class="h1 text-center text-primary">
+        <h1 class="h1 text-center text-info">
             Delete account
         </h1>
 

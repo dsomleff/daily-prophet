@@ -2,13 +2,13 @@
     <div class="flex items-center mx-3">
         <button :class="like_classes" @click="toggleLike()">
             <i class="bi bi-hand-thumbs-up-fill"></i>
+            <span class="text-white" v-text="likesCount"></span>
         </button>
-        <span :class="likesCountColor" v-text="likesCount"></span>
 
         <button :class="dislike_classes"  @click="toggleDislike()">
             <i class="bi bi-hand-thumbs-down-fill"></i>
+            <span class="text-white" v-text="dislikesCount"></span>
         </button>
-        <span :class="dislikesCountColor" v-text="dislikesCount"></span>
     </div>
 </template>
 
@@ -39,16 +39,8 @@
                 return `/posts/${this.post.id}/dislike`;
             },
 
-            likesCountColor() {
-                return [this.isLiked ? "text-info auto mr-2" :  "text-muted mr-2"];
-            },
-
             dislike_classes() {
                 return ['btn', this.isDisliked ? "btn-danger btn-sm mr-2" :  "btn-secondary btn-sm mr-2"];
-            },
-
-            dislikesCountColor(){
-                return [this.isDisliked ? "text-danger mr-2" :  "text-muted mr-2"];
             },
         },
 

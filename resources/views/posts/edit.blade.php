@@ -3,8 +3,8 @@
 
 @section('content')
     @can('update', $post)
-    <div class="container">
-        <h1 class="h1 text-center text-primary">
+    <div class="container mt-2">
+        <h1 class="h1 text-center text-info">
             Update post
         </h1>
 
@@ -32,7 +32,7 @@
                 <textarea
                 class="form-control @error('body') border border-danger @enderror"
                 id="postBody"
-                rows="3"
+                rows="10"
                 name="body"
                 >{{ $post->body }}</textarea>
 
@@ -45,11 +45,11 @@
 
             <div class="form-group">
                 <a href="{{ route('posts.index') }}">
-                    <button type="button" class="btn btn-outline-primary mt-2 mb-2">
+                    <button type="button" class="btn btn-outline-info mt-2 mb-2">
                         Back to all posts
                     </button>
                 </a>
-                <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
+                <button type="submit" class="btn btn-info mt-2 mb-2">Submit</button>
             </div>
         </form>
     </div>

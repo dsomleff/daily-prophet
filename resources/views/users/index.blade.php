@@ -2,9 +2,9 @@
 @section('title', 'Users')
 
 @section('content')
-<div class="container">
+<div class="container mt-2">
     <!-- Users roles configuration -->
-    <h1 class="display-4 mb-4">Users configuration</h1>
+    <h1 class="display-4 mb-4 text-center text-info">Users configuration</h1>
 
     <table class="table table-borderless table-hover">
         <thead>
@@ -32,11 +32,12 @@
                     </td>
                     <td>
                         <div class="dropdown">
-                            <a class="btn btn-primary dropdown-toggle w-75"
+                            <a class="btn btn-info dropdown-toggle w-75"
                                 role="button" id="dropdownMenuLink"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
-                                aria-expanded="false">
+                                aria-expanded="false"
+                            >
                                 {{ $user->role->name }}
                             </a>
 
@@ -57,8 +58,9 @@
                                         <a class="dropdown-item"
                                             href="#"
                                             onclick="event.preventDefault(); document.getElementById
-                                            ('submit-form-{{ $user->id  }}-{{ $role->id }}').submit();">
-                                                {{$role->name}}
+                                            ('submit-form-{{ $user->id  }}-{{ $role->id }}').submit();"
+                                        >
+                                            {{$role->name}}
                                         </a>
                                     </form>
                                 @endforeach

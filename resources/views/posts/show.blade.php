@@ -2,9 +2,9 @@
 @section('title', $post->title)
 
 @section('content')
-    <div class="container">
+    <div class="container mt-2">
         <!-- Post -->
-        <h1 class="h1 text-center text-primary">
+        <h1 class="h1 text-center text-info">
             {{ $post->title }}
         </h1>
         <p class="h3 text-center">
@@ -18,17 +18,17 @@
         </p>
 
         @include('partials.post-ud-buttons')
-
         @include('partials.likes')
-
         @include('partials.comments')
         @include('partials.comments-form')
 
-        <a href="{{ route('posts.index') }}">
-            <button type="button" class="btn btn-outline-primary mt-2 mb-2">
-                Back to all posts
-            </button>
-        </a>
+        <p>
+            <a href="{{ route('posts.index') }}">
+                <button type="button" class="btn btn-outline-info mt-2 mb-2">
+                    Back to all posts
+                </button>
+            </a>
+        </p>
     </div>
 @endsection
 
