@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', Auth::user()->name . ' | Manage Account')
 
 @section('content')
     <div class="container">

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', $user->name . ' | Personal Area')
 
 @section('content')
 

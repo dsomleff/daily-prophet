@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Create New Post')
 
 @section('content')
     @can('create', App\Models\Post::class)

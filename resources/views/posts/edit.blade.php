@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', $post->title . ' | Edit Post')
 
 @section('content')
     @can('update', $post)

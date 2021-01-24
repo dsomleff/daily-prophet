@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Daily Prophet | Join Us ')
 
 @section('content')
     <div class="container d-flex justify-content-center ">
@@ -61,7 +62,7 @@
                             {{ $errors->first('password') }}
                         </div>
                     @enderror
-                </div>  
+                </div>
 
                 <div class="form-group">
                     <label for="password_confirmation">Confirm password</label>
@@ -81,7 +82,7 @@
                             {{ $errors->first('password_confirmation') }}
                         </div>
                     @enderror
-                </div>   
+                </div>
 
                 <div class="form-group">
                     <a href="{{ route('login') }}">
