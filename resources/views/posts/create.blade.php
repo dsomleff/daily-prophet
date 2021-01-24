@@ -17,7 +17,9 @@
                 id="postTitle"
                 type="text"
                 name="title"
-                value="{{ old('title') }}">
+                value="{{ old('title') }}"
+                required
+            >
 
                 @error('title')
                     <div class="text-danger">
@@ -33,6 +35,7 @@
                 id="postBody"
                 rows="3"
                 name="body"
+                required
                 >{{ old('body') }}</textarea>
 
                 @error('body')

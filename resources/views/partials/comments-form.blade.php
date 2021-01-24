@@ -9,7 +9,9 @@
                 <textarea
                     class="form-control @error('body') border border-danger @enderror"
                     rows="3"
-                    name="body">{{ old('body') }}</textarea>
+                    name="body"
+                    required
+                >{{ old('body') }}</textarea>
 
             @error('body')
             <div class="text-danger">
