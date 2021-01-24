@@ -42,20 +42,23 @@
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 @foreach ($roles as $role)
-                                    @if ($role->name == $user->role->name) @continue @endif
+                                    @if ($role->name == $user->role->name)
+                                        @continue
+                                    @endif
                                     <form id="submit-form-{{ $user->id  }}-{{ $role->id }}"
                                         action="{{ route('users.update', $user->id) }}"
-                                        method="POST">
+                                        method="POST"
+                                    >
                                         @csrf
                                         @method('PUT')
 
                                         <input type="hidden" name="role_id" value="{{ $role->id }}">
 
                                         <a class="dropdown-item"
-                                        href="#"
-                                        onclick="event.preventDefault(); document.getElementById
-                                        ('submit-form-{{ $user->id  }}-{{ $role->id }}').submit();">
-                                            {{$role->name}}
+                                            href="#"
+                                            onclick="event.preventDefault(); document.getElementById
+                                            ('submit-form-{{ $user->id  }}-{{ $role->id }}').submit();">
+                                                {{$role->name}}
                                         </a>
                                     </form>
                                 @endforeach
@@ -67,8 +70,11 @@
                             @csrf
                             @method('DELETE')
                             <div class="form-group form-check">
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete
-                                                                                                  account</button>
+                                <button
+                                    type="submit"
+                                    class="btn btn-danger"
+                                    onclick="return confirm('Are you sure?');"
+                                >Delete account</button>
                             </div>
                         </form>
                     </td>

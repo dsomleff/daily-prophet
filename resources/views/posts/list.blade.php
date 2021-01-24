@@ -8,8 +8,9 @@
             <div class="col-md-16 blog-main">
                 <h3 class="pb-3 mb-4 h1 font-italic border-bottom">
                     {{ $user->name }}
-                    <small class="text-muted"> joined Daily Prophet {{ $user->created_at->diffForHumans()
-                    }}</small>
+                    <small class="text-muted">
+                        joined Daily Prophet {{ $user->created_at->diffForHumans()}}
+                    </small>
                 </h3>
 
                 <!-- Posts -->
@@ -17,7 +18,9 @@
                 @forelse($user->posts() as $post)
                     <div class="blog-post mb-5">
                         <a href="{{ route('posts.show', $post) }}">
-                            <h2 class="blog-post-title h2">{{ $post->title }}</h2>
+                            <h2 class="blog-post-title h2">
+                                {{ $post->title }}
+                            </h2>
                         </a>
                         <p class="blog-post-meta h6">
                             {{ $post->created_at->diffForHumans() }}  by
@@ -65,6 +68,5 @@
             </div>
         </div>
     </div>
-
 @endsection
 

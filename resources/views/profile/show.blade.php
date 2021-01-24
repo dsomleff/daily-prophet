@@ -15,10 +15,10 @@
             <div class="form-group">
                 <label for="name">Name</label>
                 <input
-                class="form-control form-control-lg @error('name') border border-danger @enderror"
-                type="text"
-                name="name"
-                value="{{ Auth::user()->name }}"
+                    class="form-control form-control-lg @error('name') border border-danger @enderror"
+                    type="text"
+                    name="name"
+                    value="{{ Auth::user()->name }}"
                 >
                 @error('name')
                     <div class="text-danger">
@@ -30,10 +30,10 @@
             <div class="form-group">
                 <label for="email">Email</label>
                 <input
-                class="form-control form-control-lg @error('email') border border-danger @enderror"
-                type="email"
-                name="email"
-                value="{{ Auth::user()->email }}"
+                    class="form-control form-control-lg @error('email') border border-danger @enderror"
+                    type="email"
+                    name="email"
+                    value="{{ Auth::user()->email }}"
                 >
 
                 @error('email')
@@ -60,10 +60,10 @@
             <div class="form-group">
                 <label for="email">Current password</label>
                 <input
-                class="form-control form-control-lg @error('current_password') border border-danger @enderror"
-                type="password"
-                name="current_password"
-                autocomplete="current-password"
+                    class="form-control form-control-lg @error('current_password') border border-danger @enderror"
+                    type="password"
+                    name="current_password"
+                    autocomplete="current-password"
                 >
                 @error('current_password')
                     <div class="text-danger">
@@ -75,9 +75,9 @@
             <div class="form-group">
                 <label for="email">New password</label>
                 <input
-                class="form-control form-control-lg @error('password') border border-danger @enderror"
-                type="password"
-                name="password"
+                    class="form-control form-control-lg @error('password') border border-danger @enderror"
+                    type="password"
+                    name="password"
                 >
                 @error('password')
                     <div class="text-danger">
@@ -89,9 +89,9 @@
             <div class="form-group">
                 <label for="password_confirmation">Confirm new password</label>
                 <input
-                class="form-control form-control-lg @error('password_confirmation') border border-danger @enderror"
-                type="password"
-                name="password_confirmation"
+                    class="form-control form-control-lg @error('password_confirmation') border border-danger @enderror"
+                    type="password"
+                    name="password_confirmation"
                 >
                 @error('password_confirmation')
                     <div class="text-danger">
@@ -116,10 +116,10 @@
             <div class="form-group">
                 <label for="email">Current password</label>
                 <input
-                class="form-control form-control-lg @error('current_password') border border-danger @enderror"
-                type="password"
-                name="current_password"
-                autocomplete="current-password"
+                    class="form-control form-control-lg @error('current_password') border border-danger @enderror"
+                    type="password"
+                    name="current_password"
+                    autocomplete="current-password"
                 >
                 @error('current_password')
                     <div class="text-danger">

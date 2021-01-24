@@ -20,7 +20,9 @@
                         <p class="blog-post-meta h6">
                             {{ $post->created_at->diffForHumans() }}  by
                             <small class="text-muted">
-                                <a href="{{ route('users.posts', $post->user) }}">{{ $post->user->name }}</a>
+                                <a href="{{ route('users.posts', $post->user) }}">
+                                    {{ $post->user->name }}
+                                </a>
                             </small>
                         </p>
                         <p class="h5">
@@ -28,8 +30,6 @@
                         </p>
 
                         @include('partials.likes')
-
-
                     </div>
                 @empty
                     <div class="blog-post mb-5">

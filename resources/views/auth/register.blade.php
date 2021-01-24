@@ -10,7 +10,7 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
-<div class="form-group">
+                <div class="form-group">
                     <label for="name">Name</label>
                     <input
                         class="form-control form-control-lg @error('name') border border-danger @enderror"
@@ -18,7 +18,8 @@
                         type="text"
                         name="name"
                         value="{{ old('name') }}"
-                        required>
+                        required
+                    >
 
                     @error('name')
                         <div class="text-danger">
@@ -35,7 +36,8 @@
                         type="email"
                         name="email"
                         value="{{ old('email') }}"
-                        required>
+                        required
+                    >
 
                     @error('email')
                         <div class="text-danger">
@@ -51,7 +53,8 @@
                         id="password"
                         type="password"
                         name="password"
-                        required>
+                        required
+                    >
 
                     <small id="passwordHelpBlock" class="form-text text-muted">
                         Your password must be 8-20 characters long.
@@ -71,11 +74,12 @@
                         id="password_confirmation"
                         type="password"
                         name="password_confirmation"
-                        required>
+                        required
+                    >
 
                         <small id="passwordHelpBlock" class="form-text text-muted">
-                        Your password must be 8-20 characters long.
-                    </small>
+                            Your password must be 8-20 characters long.
+                        </small>
 
                     @error('password_confirmation')
                         <div class="text-danger">

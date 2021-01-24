@@ -35,8 +35,18 @@
                 <!-- Possibility to delete for author and admin -->
                 @can('deleteComment', $comment)
                     <div>
-                        <button type="submit" class="btn btn-sm btn-outline-primary" @click="editing = true">Edit</button>
-                        <button type="submit" class="btn btn-sm btn-outline-danger" @click="destroy" onclick="return confirm('Are you sure?');">Delete</button>
+                        <button
+                            type="submit"
+                            class="btn btn-sm btn-outline-primary"
+                            @click="editing = true"
+                        >Edit</button>
+
+                        <button
+                            type="submit"
+                            class="btn btn-sm btn-outline-danger"
+                            @click="destroy"
+                            onclick="return confirm('Are you sure?');"
+                        >Delete</button>
                     </div>
                 @endcan
             </div>

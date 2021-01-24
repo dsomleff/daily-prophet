@@ -12,7 +12,6 @@
             <a href="{{ route('users.posts', $post->user) }}">
                 {{ $post->user->name }}
             </a>
-
         </p>
         <p class="lead">
             {{ $post->body }}

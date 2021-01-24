@@ -23,7 +23,8 @@
                         type="email"
                         name="email"
                         value="{{ old('email') }}"
-                        required>
+                        required
+                    >
 
                     @error('email')
                         <div class="text-danger">
@@ -40,7 +41,8 @@
                         type="password"
                         name="password"
                         value="{{ old('password') }}"
-                        required>
+                        required
+                    >
 
                     <small id="passwordHelpBlock" class="form-text text-muted">
                         Your password must be 8-20 characters long.
