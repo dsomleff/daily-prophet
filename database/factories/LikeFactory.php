@@ -27,7 +27,7 @@ class LikeFactory extends Factory
         $postsIds = Post::all();
 
         return [
-            'user_id' => $this->faker->unique(true)->numberBetween($min = $usersIds[0], $max=$usersIds[8]),
+            'user_id' => $this->faker->unique(true)->randomElement($usersIds),
             'post_id' => $this->faker->unique(true)->randomElement($postsIds),
             'liked' => $this->faker->randomElement([0, 1])
         ];

@@ -1,12 +1,12 @@
 <template>
     <div class="flex items-center mx-3">
         <button :class="like_classes" @click="toggleLike()">
-            +
+            <i class="bi bi-hand-thumbs-up-fill"></i>
         </button>
         <span :class="likesCountColor" v-text="likesCount"></span>
 
         <button :class="dislike_classes"  @click="toggleDislike()">
-            -
+            <i class="bi bi-hand-thumbs-down-fill"></i>
         </button>
         <span :class="dislikesCountColor" v-text="dislikesCount"></span>
     </div>

@@ -24,7 +24,7 @@
                             </small>
                         </p>
                         <p class="h5">
-                            {{ $post->body }}
+                            {{ Str::limit($post->body, 500) }}
                         </p>
 
                         @include('partials.likes')
