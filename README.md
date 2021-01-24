@@ -1,62 +1,125 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Daily Prophet
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Spec
+Your task is to create a blog website (at least it’s not an to do app right 😊) with login functionality.
+Users with contributor access should be able to post new blog posts, edit their posts and delete their posts.
+There should be and admin account let’s call it ‘admin’ with email admin@admin.sk .
+This account should be able to see all the posts and manage them – CRUD.
+Admin user should be also able to assign roles (contributor role) in the system to other users.
+Regular users should be able to view other users blog posts and post comments and like or dislike the posts.
 
-## About Laravel
+# Technologies
+- Languages: PHP 7.3, JavaScript
+- Frameworks: Laravel 8.0, VueJS 2.6, Bootstrap 4.5
+- Database: MySQL
+- ORM: Eloquent
+- VCS: GIT, GitHub
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Installation
+>!!! CAUTION : you should take care of .env file. There is example with all needed fields. You should put there your DB
+configs. !!!
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```sh
+$ composer install
+$ php artisan migrate
+$ php artisan db:seed
+$ npm install
+$ npm run dev
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Database
+Check the DBStructure.png to review DB tables with relations and foreign keys.
+Project contains migration files for creating tables, factories with Faker-generated-data and one DatabaseSeeder file.
 
-## Learning Laravel
+# User / Auth / Role
+According to my understanding of specification, our system has 4 types of users:
+- _**Guest**_ - may only read the posts (like, comment function - not available). After registration become a Regular.
+- _**Regular**_ - able to read, like and comment posts (no publish functions). Can edit personal info (change name, email,
+  password, delete own account).
+- _**Contributor**_ - able to CRUD action on own posts, like and comment any posts. May edit personal info (change name, email,
+  password, delete own account).
+- _**Admin**_ - almost god level🙂. Able to CRUD all posts and comments, change users roles and delete users include himself.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+>Auth logic and routes taken from Laravel Jetstream.
+> 
+>Access for Users regulated by UserPolicy and Laravel Auth functionality.
+> 
+>All Users share the same password, which is - password.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Post
+Posts can be managed by CRUD functions.
 
-## Laravel Sponsors
+**Create** <br />
+Post can be created by admin or registered user with contributor role. There is validation on front (HTML5) and back
+(Laravel) levels. Each field is required and should be in a given size. User with related privileges can find link for
+post creation in navigation menu->dropdown->create new post.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+**Read** <br />
+Everybody can see every post on main page/author’s posts page/post page itself. There are no restrictions for this.
 
-### Premium Partners
+**Edit** <br />
+Post can be edited only by admin or its author. Validation rules are the same as for creation. User can find link for
+post editing (only if allowed) on post page or on page with all author’s posts.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+**Delete** <br />
+Post can be deleted only by admin or its author. On delete should be cascade deleting of post dependencies (likes, comments).
 
-## Contributing
+Post model has configured relationships with all connected instances (user, like, comment) and basic database
+configuration (fillable/guarded fields explanation).
+All fields for Post have StorePostRequest for validation purposes.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Access to Post CRUD regulated by PostPolicy.
 
-## Code of Conduct
+Post controller has all needed CRUD functions plus additional.
+>Method index is responsible for collecting all posts, pagination and direction this data to connected view (posts/index).
+> 
+>Method show is responsible for single post display. It receives post and returns view (posts/show) with compact.
+> 
+>Method edit is responsible for edit post page display. It receives post and returns view (posts/edit) with compact.
+> 
+>Method update is responsible for post updating.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Comments
+Registered Users able to do CRUD operations on own comments.
+Comment model has configured relationships with all connected instances (user, post) and basic database
+configuration (fillable/guarded fields explanation).
+Field for Comment has StoreCommentRequest for validation purposes.
+Access to Comment CRUD regulated by CommentPolicy.
 
-## Security Vulnerabilities
+# Likes
+Registered Users able to like or dislike specific post.
+Each post can be liked/dislike only once by each user.
+Likes and Dislikes have own counter.
+If some post was liked/disliked by mistake user can take it back.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Vue.js
+A few things were done in AJAX technique.
+- Flash component responsible for displaying successful messages all over the app.
+- Likeable component responsible for like/dislike logic with counter in a real time.
+- Comment component allows edit and delete comment by author/admin, without reloading page.
 
-## License
+# Routing
+**App** <br />
+``/`` and ``/posts`` - main page with posts, likes and pagination (5 posts on page). Post body has limited preview (500
+symbols). <br />
+``/post/{postID}`` - Page with whole Post with comments and likes. <br />
+``/posts/create`` - Create new post page. <br />
+``/posts/{postID}/edit/`` - Edit specific post page. <br />
+``/about`` - Page with Dummy Data for UX integrity. <br />
+``/contacts`` - Page with Dummy Data for UX consistency. <br />
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**User section** <br />
+``/users`` - Page where Admin able to change users roles or delete users. <br />
+``/users/{userId}`` - Personal area where user able to see all own posts, edit or delete them. Also contains list of all users comments with a link to corresponding post. <br />
+``/user/profile`` - Page for managing user account. (Check User section for more info)
+
+**Auth** <br />
+``/login`` - for registered users access <br />
+``/register`` - use to join Daily Prophet community <br />
+``/logout`` - User leave the building:)
+
+# Developer Note
+Unfortunately, because of the lack of time, not all from my planned features were implemented. For example image
+upload - modern blog without pictures it's a bit weird. Also Admin not able to ban user and manage user's profiles.
+Development process was chaotic and asynchronous, that's why some solutions from architecture perspective may look controversial.
+Anyway, we can discuss it more on interview, if you like to.😉
