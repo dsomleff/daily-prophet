@@ -21,7 +21,6 @@ trait Likeable
      *
      * @param null $user
      * @param bool $liked
-     * @return void
      */
     public function like($user = null, $liked = true)
     {
@@ -47,7 +46,6 @@ trait Likeable
      * Store dislike
      *
      * @param null $user
-     * @return void
      */
     public function dislike($user = null)
     {

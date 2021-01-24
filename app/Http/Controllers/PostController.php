@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
-use App\Models\User;
 use Exception;
 use App\Models\Post;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Auth\Access\AuthorizationException;
 
 class PostController extends Controller
@@ -65,7 +64,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $post = $post->withCount(['likes', 'dislikes'])->where('id', $post->id)->first();
+        $post = $post->withCount(['likes', 'dislikes'])
+            ->where('id', $post->id)
+            ->first();
+
         return view('posts.show', compact('post'));
     }
 

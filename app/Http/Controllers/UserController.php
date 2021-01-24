@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Exception;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -23,7 +23,6 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param User $user
-     *
      * @return mixed
      * @throws Exception
      */

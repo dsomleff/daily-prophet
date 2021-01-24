@@ -10,8 +10,14 @@ class Post extends Model
     use HasFactory;
     use Likeable;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = ['user_id', 'title' , 'body'];
 
+    /**
+     * @var string[]
+     */
     protected $appends = ['isLiked', 'isDisliked'];
 
     /**

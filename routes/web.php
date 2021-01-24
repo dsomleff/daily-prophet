@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//    return view('dashboard');
-//})->name('dashboard');
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return redirect('/');
 });
@@ -29,8 +25,8 @@ Route::prefix('posts')->group(function () {
 Route::prefix('comment')->group(function () {
     Route::post('/', 'CommentController@store');
     Route::delete('/{comment}', 'CommentController@destroy')->name('comments.destroy');
+    Route::put('/{comment}',  'CommentController@update');
 });
-Route::put('comment/{comment}',  'CommentController@update');
 
 // Like/Dislike System
 Route::prefix('posts/{post}')->group(function () {

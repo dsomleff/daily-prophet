@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\Request;
 
 class UserRoleController extends Controller
 {
@@ -13,7 +12,6 @@ class UserRoleController extends Controller
      * Display a listing of the resource.
      *
      * @param User $user
-     *
      * @return mixed
      * @throws AuthorizationException
      */
@@ -31,31 +29,14 @@ class UserRoleController extends Controller
      * Update the specified resource in storage.
      *
      * @param User    $user
-     * @param Request $request
      * @return mixed
      */
-    public function update(User $user, Request $request)
+    public function update(User $user)
     {
-//        $this->authorize('update', $post);
-
         $user->where('id', $user->id)
             ->update(request(['role_id']));
 
         return redirect(route('users.index'))
             ->with('flash', 'User role has been updated!');
     }
-
-//    /**
-//     * Display the specified resource.
-//     *
-//     * @param User $user
-//     * @return mixed
-//     */
-//    public function show(User $user)
-//    {
-//        return view('profile.show', compact('user'));
-////        return view('profile.update-profile-information-form', compact('user'));
-//    }
-
-
 }
