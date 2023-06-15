@@ -1,9 +1,9 @@
 # Daily Prophet
 
 # Spec
-Your task is to create a blog website (at least it’s not an to do app right 😊) with login functionality.
+Blog website with login functionality.
 Users with contributor access should be able to post new blog posts, edit their posts and delete their posts.
-There should be and admin account let’s call it ‘admin’ with email admin@admin.sk .
+There should be and admin account with email admin@admin.sk .
 This account should be able to see all the posts and manage them – CRUD.
 Admin user should be also able to assign roles (contributor role) in the system to other users.
 Regular users should be able to view other users blog posts and post comments and like or dislike the posts.
@@ -93,7 +93,6 @@ Likes and Dislikes have own counter.
 If some post was liked/disliked by mistake user can take it back.
 
 # Vue.js
-A few things were done in AJAX technique.
 - Flash component responsible for displaying successful messages all over the app.
 - Likeable component responsible for like/dislike logic with counter in a real time.
 - Comment component allows edit and delete comment by author/admin, without reloading page.
@@ -117,9 +116,3 @@ symbols). <br />
 ``/login`` - for registered users access <br />
 ``/register`` - use to join Daily Prophet community <br />
 ``/logout`` - User leave the building:)
-
-# Developer Note
-Unfortunately, because of the lack of time, not all from my planned features were implemented. For example image
-upload - modern blog without pictures it's a bit weird. Also Admin not able to ban user and manage user's profiles.
-Development process was chaotic and asynchronous, that's why some solutions from architecture perspective may look controversial.
-Anyway, we can discuss it more on interview, if you like to.😉
